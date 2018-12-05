@@ -14,7 +14,7 @@
         <v-list-tile
           v-for="(item,index) in items"
           :to="!item.href ? { name: item.name } : null"
-          @click="item.click"
+          @click.prevent="item.click"
           ripple="ripple"
           :key="index"
         >
@@ -30,28 +30,40 @@
   </v-toolbar>
 </template>
 <script>
-import noneAvatar from '~/static/avatar.png';
+import noneAvatar from "~/static/avatar.png";
 export default {
-  data: () => ({
-    noneAvatar,
-    items: [
-      {
-        icon: 'account_circle',
-        href: '#',
-        title: 'Profile',
-        click: e => {
-          console.log(e);
+  data() {
+    return {
+      noneAvatar,
+      items: [
+        {
+          icon: "account_circle",
+          href: "#",
+          title: "Profile",
+          click: e => {
+            console.log(e);
+          }
+        },
+        {
+          icon: "fullscreen_exit",
+          href: "#",
+          title: "Logout",
+          click: () => {
+            this.logout();
+          }
         }
-      },
-      {
-        icon: 'fullscreen_exit',
-        href: '#',
-        title: 'Logout',
-        click: e => {
-          window.getApp.$emit('APP_LOGOUT');
-        }
+      ]
+    };
+  },
+  methods: {
+    async logout() {
+      try {
+        await this.$store.dispatch("auth/logout");
+        this.$router.push({ name: "auth-login" });
+      } catch (e) {
+        this.error = e.response.data.error;
       }
-    ]
-  })
+    }
+  }
 };
 </script>

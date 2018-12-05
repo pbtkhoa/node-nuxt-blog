@@ -10,7 +10,7 @@ module.exports = [
     check('username')
       .not()
       .isEmpty()
-      .isLength({ min: 4, max: 10 })
+      .isLength({ min: 4, max: 20 })
       .custom(value =>
         User.find({ username: value }).then(user => {
           if (user) {
@@ -31,7 +31,7 @@ module.exports = [
     check('password')
       .not()
       .isEmpty()
-      .isLength({ min: 6, max: 20 })
+      .isLength({ min: 4, max: 20 })
   ],
   (req, res, next) => {
     const errors = validationResult(req);

@@ -3,14 +3,15 @@
  */
 const express = require('express');
 const bodyParser = require('body-parser');
-const dotenv = require('dotenv');
 const mongoose = require('mongoose');
-
-dotenv.config();
-const config = require('./app/config');
-const router = require('./app/routes');
+require('dotenv').config();
+const router = require('./routes');
+const cors = require('./config/cors');
+const nuxt = require('./config/nuxt');
+const exception = require('./exception');
 
 const app = express();
+
 const port = process.env.API_PORT || 3000;
 
 /**
@@ -19,7 +20,7 @@ const port = process.env.API_PORT || 3000;
  * @desc CORS
  * @desc Handle Exception
  */
-app.use(bodyParser.json(), config.cors, require('./app/config/exception'));
+app.use(bodyParser.json(), cors, exception);
 
 /**
  * Database Connection
@@ -28,23 +29,26 @@ mongoose.connect(
   process.env.DB_CONNECTION,
   { useNewUrlParser: true, useCreateIndex: true }
 );
-if (config.isDev) {
+if (process.env.NODE_ENV === 'dev') {
   mongoose.set('debug', true);
 }
 
 /**
  * Import Models
  */
-require('./app/models/User');
+require('./models/User');
+require('./models/Category');
+require('./models/Post');
 
-require('./app/config/passport');
+require('./config/passport');
 
 /**
  * Router
  */
-app.use('/api', router);
-// app.use(config.nuxt.render);
+app.use(process.env.API_PREFIX, router);
+app.use(nuxt.render);
 
+// Export the server middleware
 app.listen(port, () => {
   console.log(`App listening on port ${port}!`);
 });

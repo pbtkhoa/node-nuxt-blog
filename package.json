@@ -2,10 +2,10 @@
   "name": "nuxt-node",
   "version": "1.0.0",
   "description": "My polished Nuxt.js project",
-  "author": "KhÃoa Pham",
+  "author": "Khoa Pham",
   "private": true,
   "scripts": {
-    "server": "nodemon app.js",
+    "server": "nodemon api/index.js",
     "client": "nuxt",
     "nuxt_generate": "nuxt generate"
   },
@@ -23,7 +23,9 @@
     "nuxt": "^2.0.0",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
+    "slug": "^0.9.2",
     "vue-quill-editor": "^3.0.6",
+    "vuelidate": "^0.7.4",
     "vuetify": "^1.2.4"
   },
   "devDependencies": {

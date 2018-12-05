@@ -2,9 +2,11 @@ const pkg = require('./package');
 
 module.exports = {
   mode: 'spa',
-
+  dev: process.env.NODE_ENV !== 'production',
   srcDir: 'client/',
-
+  router: {
+    middleware: 'check-auth'
+  },
   /*
    ** Headers of the page
    */

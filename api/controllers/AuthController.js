@@ -1,5 +1,5 @@
-const User = require('./../models/User');
 const passport = require('passport');
+const User = require('./../models/User');
 
 module.exports = {
   /**
@@ -16,5 +16,18 @@ module.exports = {
 
       return res.json(user.toAuthJSON());
     })(req, res, next);
+  },
+
+  /**
+   * Login User
+   *
+   * @param {*} req
+   * @param {*} res
+   * @param {*} next
+   */
+  async check(req, res, next) {
+    let user = await User.findById(req.payload.id);
+
+    return res.json(user.toAuthJSON());
   }
 };

@@ -1,11 +1,13 @@
 const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
-const config = require('../config');
 const bcrypt = require('bcrypt');
 
 const UserSchema = new mongoose.Schema(
   {
-    name: String,
+    name: {
+      type: String,
+      required: [true, "can't be blank"]
+    },
     username: {
       type: String,
       lowercase: true,
@@ -48,7 +50,7 @@ UserSchema.methods.generateJWT = function() {
       username: this.username,
       exp: parseInt(exp.getTime() / 1000)
     },
-    config.secret
+    process.env.APP_SECRET
   );
 };
 

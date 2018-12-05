@@ -27,7 +27,8 @@ module.exports = {
    */
   async show(req, res, next) {
     try {
-      let user = await User.findById(req.params.id).byProtectedField();
+      let id = req.params.id;
+      let user = await User.findById(id).byProtectedField();
 
       return res.json(user);
     } catch (e) {

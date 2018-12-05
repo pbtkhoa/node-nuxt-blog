@@ -2,14 +2,14 @@ const { check, validationResult } = require('express-validator/check');
 
 module.exports = [
   [
-    check('name')
+    check('username')
       .not()
       .isEmpty()
       .isLength({ min: 4, max: 20 }),
     check('password')
       .not()
       .isEmpty()
-      .isLength({ min: 6, max: 20 })
+      .isLength({ min: 4, max: 20 })
   ],
   (req, res, next) => {
     const errors = validationResult(req);

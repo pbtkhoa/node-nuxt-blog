@@ -1,14 +1,14 @@
 const express = require('express');
 const auth = require('./auth');
 const user = require('./user');
-const article = require('./article');
+const post = require('./post');
 
 const authen = require('./../middleware/authen');
 // Midlewares
 const router = express.Router();
 router.use('/auth', auth);
 router.use('/user', user);
-router.use('/article', authen, article);
+router.use('/post', authen, post);
 
 // Catch error
 router.use((err, req, res, next) => {
