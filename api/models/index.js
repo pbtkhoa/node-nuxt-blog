@@ -11,6 +11,7 @@ if (process.env.NODE_ENV === 'dev') {
   mongoose.set('debug', true);
 }
 
+require('./Role');
 require('./User');
 require('./Category');
 require('./Post');

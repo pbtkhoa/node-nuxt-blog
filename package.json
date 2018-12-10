@@ -6,6 +6,7 @@
   "private": true,
   "scripts": {
     "server": "nodemon api/index.js",
+    "seeder": "node api/seeder/index.js",
     "client": "nuxt",
     "nuxt_generate": "nuxt generate"
   },
@@ -20,6 +21,7 @@
     "express-validator": "^5.3.0",
     "jsonwebtoken": "^8.4.0",
     "mongoose": "^5.3.13",
+    "mongoose-seed": "^0.5.1",
     "nuxt": "^2.0.0",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",

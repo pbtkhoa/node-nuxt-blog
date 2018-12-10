@@ -9,7 +9,7 @@ passport.use(
       passwordField: 'password'
     },
     (username, password, done) => {
-      User.findOne({ username })
+      User.findAuth({ username })
         .then((user, err) => {
           // Something went wrong!
           if (err) return done(err);

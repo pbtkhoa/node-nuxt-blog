@@ -14,7 +14,7 @@ const PostSchema = new mongoose.Schema(
     },
     image: String,
     content: String,
-    categories: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Categories' }]
+    categories: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Category' }]
   },
   { timestamps: true }
 );

@@ -25,10 +25,15 @@ const UserSchema = new mongoose.Schema(
     },
     avatar: String,
     salt: String,
-    password: String
+    password: String,
+    role: { type: mongoose.Schema.Types.ObjectId, ref: 'Role' }
   },
   { timestamps: true }
 );
+
+UserSchema.statics.findAuth = function(query) {
+  return this.findOne({ ...query }).populate('role');
+};
 
 UserSchema.methods.validPassword = function(password) {
   return bcrypt.compareSync(password, this.password);
@@ -59,6 +64,7 @@ UserSchema.methods.toAuthJSON = function() {
     name: this.name,
     username: this.username,
     email: this.email,
+    role: this.role.name,
     avatar: this.avatar,
     token: this.generateJWT()
   };

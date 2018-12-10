@@ -26,7 +26,7 @@ module.exports = {
    * @param {*} next
    */
   async check(req, res, next) {
-    let user = await User.findById(req.payload.id);
+    let user = await User.findAuth({ _id: req.payload.id });
 
     return res.json(user.toAuthJSON());
   }

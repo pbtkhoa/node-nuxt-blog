@@ -5,9 +5,9 @@ const express = require('express');
 const bodyParser = require('body-parser');
 require('dotenv').config();
 const router = require('./routes');
+const exception = require('./exception');
 const cors = require('./config/cors');
 const nuxt = require('./config/nuxt');
-const exception = require('./exception');
 
 const app = express();
 
