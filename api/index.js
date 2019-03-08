@@ -8,6 +8,7 @@ const router = require('./routes');
 const exception = require('./exception');
 const cors = require('./config/cors');
 const nuxt = require('./config/nuxt');
+require('./config/mongoose');
 
 const app = express();
 

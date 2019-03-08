@@ -1,7 +1,4 @@
-require('./../models');
-
-const User = require('./../models/User');
-const Role = require('./../models/Role');
+const { User, Role } = require('./../models');
 
 module.exports = async (username, roleName) => {
   try {

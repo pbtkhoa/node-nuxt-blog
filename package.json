@@ -21,7 +21,7 @@
     "express-validator": "^5.3.0",
     "jsonwebtoken": "^8.4.0",
     "mongoose": "^5.3.13",
-    "mongoose-seed": "^0.5.1",
+    "mongoose-seed": "^0.6.0",
     "nuxt": "^2.0.0",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
