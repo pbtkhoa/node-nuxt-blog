@@ -10,6 +10,9 @@ module.exports = () =>
       },
       {
         name: constant.roles.moderator
+      },
+      {
+        name: constant.roles.member
       }
     ];
 

@@ -1,3 +1,4 @@
+require('dotenv').config();
 require('./../config/mongoose')
 const roleSeeder = require('./roleSeeder');
 const assignUserRole = require('./assignUserRole');

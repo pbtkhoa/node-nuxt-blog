@@ -1,4 +1,6 @@
-const User = require('./../models/User');
+const { User, Role } = require('./../models');
+const { roles } = require('./../config/constant');
+const logger = require('./../utils/logger');
 
 module.exports = {
   /**
@@ -85,15 +87,18 @@ module.exports = {
   async create(req, res, next) {
     try {
       let { body } = req;
+      let role = await Role.findOne({ name: roles.member });
       let user = new User();
       user.name = body.name;
       user.username = body.username;
       user.email = body.email;
       user.setPassword(body.password);
+      user.role = role;
       await user.save();
 
       return res.json(user.toAuthJSON());
     } catch (e) {
+      logger.info(e);
       return res.status(500).json({ msg: 'Cannot create User' });
     }
   }

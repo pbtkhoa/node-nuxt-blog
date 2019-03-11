@@ -12,7 +12,7 @@ module.exports = [
       .isEmpty()
       .isLength({ min: 4, max: 20 })
       .custom(value =>
-        User.find({ username: value }).then(user => {
+        User.findOne({ username: value }).then(user => {
           if (user) {
             return Promise.reject('Username already in use');
           }
@@ -22,7 +22,7 @@ module.exports = [
       .exists()
       .isEmail()
       .custom(value =>
-        User.find({ email: value }).then(user => {
+        User.findOne({ email: value }).then(user => {
           if (user) {
             return Promise.reject('E-mail already in use');
           }
